@@ -14,9 +14,6 @@ All of them can be installed with ```pip install```. The python version is Pytho
 
 
 ##  Training and Evaluation
-### 1 - Datasets
-
-Download the [Traning, Validation and Test Datasets](https://bnn.upc.edu/challenge/gnnet2021/dataset/)  made available by the [Barcelona Neural Networking Center](https://bnn.upc.edu/), then save them in a folder named Dataset following the specifications contained in the [config.ini](https://github.com/ITU-AI-ML-in-5G-Challenge/ITU-ML5G-PS-001-SOFGNN-Graph-Neural-Networking-Challenge/blob/main/code/config.ini) file. Update the [[DIRECTORIES]](https://github.com/ITU-AI-ML-in-5G-Challenge/ITU-ML5G-PS-001-SOFGNN-Graph-Neural-Networking-Challenge/blob/main/code/config.ini#L1)  paths  to match with your envionment.
 
 ### 2 - Train the model
 
