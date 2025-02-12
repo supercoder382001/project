@@ -51,14 +51,14 @@ model2 = RouteNetModelOccuEval_2(config)
 
 # path of the best models
 # comment these 4 lines in case you want to load the trained neural network we provided
-with open('Best_model_1.txt') as f:
-    dir_model1 = f.readlines()[0]
-with open('Best_model_2.txt') as f:
-    dir_model2 = f.readlines()[0]
+# with open('Best_model_1.txt') as f:
+#     dir_model1 = f.readlines()[0]
+# with open('Best_model_2.txt') as f:
+#     dir_model2 = f.readlines()[0]
 
 # Uncomment these two lines in case you want to load the trained neural network we provided
-# dir_model1 = 'saved_best_model_1/model1'
-# dir_model2 = 'saved_best_model_2/model2'
+dir_model1 = 'saved_best_model_1/model1'
+dir_model2 = 'saved_best_model_2/model2'
 
 # Load the models
 model1.load_weights(dir_model1)
@@ -88,7 +88,3 @@ loss_object = tf.keras.losses.MeanAbsolutePercentageError()
 MAPE_ensemble = loss_object(np.squeeze(target),np.squeeze(predictions))
 
 print('MAPE ensemble =', MAPE_ensemble.numpy())
-
-
-
-

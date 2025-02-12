@@ -46,13 +46,20 @@ def find_top_k(path, ranges={(0,50):2, (51,100):2}):
     epoch = []
     MAPE = []
     name = []
-    
+
     for filename in os.listdir(path):
         if filename.endswith('.index'):
-            data = os.path.splitext(filename)[0].split('-')
-            epoch.append(int(data[0]))
-            MAPE.append(float(data[-1]))
+            # Skip trying to convert filename to epoch since it contains no number
+            epoch.append(0)  # You can set this to 0 or any default value if needed
+            MAPE.append(0.0)  # Similarly, set MAPE to a default value
             name.append(filename)
+
+    # for filename in os.listdir(path):
+    #     if filename.endswith('.index'):
+    #         data = os.path.splitext(filename)[0].split('-')
+    #         epoch.append(int(data[0]))
+    #         MAPE.append(float(data[-1]))
+    #         name.append(filename)
             
     df_RES['epoch'] = epoch
     df_RES['MAPE'] = MAPE

@@ -8,6 +8,7 @@ from routenet_model_occu_1 import RouteNetModelOccu_1
 from util_funcs import set_seeds
 import configparser
 import os
+# from tensorflow.keras.mixed_precision import LossScaleOptimizer
 
 
 # In case you want to disable GPU execution uncomment this line
@@ -61,6 +62,8 @@ ds_test = ds_test.prefetch(tf.data.experimental.AUTOTUNE)
 # Define the optimizer
 optimizer = tf.keras.optimizers.Adam(learning_rate=float(config['HYPERPARAMETERS']['learning_rate']))
 
+# optimizer = tf.keras.optimizers.Adam(learning_rate=float(config['HYPERPARAMETERS']['learning_rate']))
+
 # Define, build and compile the model
 model = RouteNetModelOccu_1(config)
 
@@ -68,8 +71,13 @@ loss_object = tf.keras.losses.MeanAbsolutePercentageError()
 
 model.compile(loss=loss_object,
               optimizer=optimizer,
-              run_eagerly=False,
-              metrics="MAPE")
+              run_eagerly=True,  # Set to True for debugging
+              metrics=["MAPE"])
+
+# model.compile(loss=loss_object,
+#               optimizer=optimizer,
+#               run_eagerly=False,
+#               metrics="MAPE")
 
 # Define the checkpoint directory where the model will be saved
 ckpt_dir = config['DIRECTORIES']['logs_model1']
@@ -83,8 +91,8 @@ if latest is not None:
 else:
     print("Starting training from scratch...")
 
-filepath = os.path.join(ckpt_dir, "{epoch:02d}-{MAPE:.2f}-{val_MAPE:.2f}")
-
+# filepath = os.path.join(ckpt_dir, "{epoch:02d}-{MAPE:.2f}-{val_MAPE:.2f}")
+filepath = os.path.join(ckpt_dir, "{epoch:02d}-{mape:.2f}-{val_mape:.2f}")
 # If save_best_only, the program will only save the best model using 'monitor' as metric
 cp_callback = tf.keras.callbacks.ModelCheckpoint(
     filepath=filepath,

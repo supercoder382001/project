@@ -1,6 +1,6 @@
 import tensorflow as tf
 import sys
-sys.path.insert(1, "./code")
+# sys.path.insert(1, "./code")
 from read_dataset import input_fn
 import pandas as pd
 from routenet_model_occu_eval_2 import RouteNetModelOccuEval_2
